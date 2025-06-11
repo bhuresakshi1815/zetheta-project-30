@@ -1,18 +1,13 @@
-import './App.css';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+// src/App.js
+import React from 'react';
+import { BrowserRouter } from 'react-router-dom';
+import AppRoutes from './routes'; // ✅ Make sure routes.js exports AppRoutes
 
 function App() {
   return (
     <BrowserRouter>
       <div className="App">
-        <Routes>
-  <Route path="/" element={
-    <div>
-      <h1>Welcome to the Dashboard!</h1>
-      <p>This is now coming directly from App.js</p>
-    </div>
-    } />
-  </Routes>
+        <AppRoutes />
       </div>
     </BrowserRouter>
   );

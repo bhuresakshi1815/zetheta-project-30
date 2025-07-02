@@ -1,8 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Search, Star, ArrowRight, Menu, X } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 
 const Homepage = () => {
+  const navigate = useNavigate();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [searchPosition, setSearchPosition] = useState(0);
+  const [animationDirection, setAnimationDirection] = useState(1);
 
   const reviews = [
     {
@@ -39,6 +43,14 @@ const Homepage = () => {
     console.log('Get started clicked - integrate with API');
   };
 
+  const handlePrivacyClick = () => {
+    navigate('/privacy');
+  };
+
+  const handleContactClick = () => {
+    navigate('/contact');
+  };
+
   const renderStars = (rating) => {
     return Array.from({ length: 5 }, (_, i) => (
       <Star
@@ -48,6 +60,35 @@ const Homepage = () => {
       />
     ));
   };
+
+  const renderAnimatedStars = () => {
+    const filledStars = Math.floor((searchPosition / 100) * 5);
+    return Array.from({ length: 5 }, (_, i) => (
+      <Star
+        key={i}
+        size={12}
+        className={i < filledStars ? 'fill-yellow-400 text-yellow-400' : 'text-white'}
+      />
+    ));
+  };
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setSearchPosition(prev => {
+        const newPosition = prev + (animationDirection * 2);
+        if (newPosition >= 100) {
+          setAnimationDirection(-1);
+          return 100;
+        } else if (newPosition <= 0) {
+          setAnimationDirection(1);
+          return 0;
+        }
+        return newPosition;
+      });
+    }, 50);
+
+    return () => clearInterval(interval);
+  }, [animationDirection]);
 
   return (
     <div className="min-h-screen bg-slate-700 text-white">
@@ -172,16 +213,7 @@ const Homepage = () => {
             </div>
             
             <div className="relative">
-              <div className="rounded-2xl p-8 transform rotate-3 shadow-2xl" style={{ backgroundColor: '#f07d24' }}>
-                <h3 className="text-2xl font-bold mb-4 text-white">
-                  Voice-Analysis Risk Profiling
-                </h3>
-                <div className="flex items-center justify-center">
-                  <div className="bg-white rounded-full p-4">
-                    <Search size={48} style={{ color: '#205c79' }} />
-                  </div>
-                </div>
-              </div>
+              {/* Box removed as requested */}
             </div>
           </div>
         </div>
@@ -190,11 +222,28 @@ const Homepage = () => {
       {/* Reviews Section */}
       <section id="reviews" className="px-6 py-16" style={{ backgroundColor: '#1a4a63' }}>
         <div className="max-w-6xl mx-auto">
-          <h2 className="text-4xl font-black text-center mb-12">
-            Reviews
-          </h2>
+          <div className="relative flex justify-center mb-12">
+            <h2 className="text-4xl font-black text-center">
+              Reviews
+            </h2>
+            
+            {/* Animated Search Icon with Stars - positioned relative to "Reviews" text */}
+            <div className="absolute top-full mt-2 left-1/2 transform -translate-x-1/2">
+              <div className="relative" style={{ width: '140px' }}>
+                <div 
+                  className="absolute transition-all duration-100 ease-linear"
+                  style={{ left: `${searchPosition}%`, transform: 'translateX(-50%)' }}
+                >
+                  <Search size={24} className="text-orange-400 mb-1" />
+                  <div className="flex justify-center gap-1">
+                    {renderAnimatedStars()}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
           
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="grid md:grid-cols-3 gap-8 mt-16">
             {reviews.map((review) => (
               <div key={review.id} className="rounded-xl p-6 shadow-lg hover:shadow-xl transition-shadow duration-300" style={{ backgroundColor: '#205c79' }}>
                 <div className="flex items-center mb-4">
@@ -231,13 +280,11 @@ const Homepage = () => {
             </button>
             <button 
               onClick={handleGetStarted}
-              className="bg-transparent border-2 px-8 py-4 rounded-lg font-semibold hover:text-white transition-all duration-300 transform hover:scale-105"
+              className="text-white px-8 py-4 rounded-lg font-semibold text-xl transition-all duration-300 transform hover:scale-105"
               style={{ 
                 borderColor: '#f07d24',
-                color: '#f07d24'
+                backgroundColor: '#f07d24'
               }}
-              onMouseEnter={(e) => e.target.style.backgroundColor = '#f07d24'}
-              onMouseLeave={(e) => e.target.style.backgroundColor = 'transparent'}
             >
               Get Started Today
             </button>
@@ -255,9 +302,18 @@ const Homepage = () => {
             Revolutionizing Security Through Vocal Intelligence
           </p>
           <div className="flex justify-center space-x-6">
-            <a href="#privacy" className="text-gray-300 hover:opacity-80 transition-opacity">Privacy Policy</a>
-            <a href="#terms" className="text-gray-300 hover:opacity-80 transition-opacity">Terms of Service</a>
-            <a href="#contact" className="text-gray-300 hover:opacity-80 transition-opacity">Contact</a>
+            <button 
+              onClick={handlePrivacyClick}
+              className="text-gray-300 hover:opacity-80 transition-opacity bg-transparent border-none cursor-pointer"
+            >
+              Privacy Policy
+            </button>
+            <button 
+              onClick={handleContactClick}
+              className="text-gray-300 hover:opacity-80 transition-opacity bg-transparent border-none cursor-pointer"
+            >
+              Contact
+            </button>
           </div>
           <p className="text-gray-400 mt-6 text-sm">
             © 2025 Voice-Analysis Risk Profiler. All rights reserved.

@@ -16,6 +16,7 @@ import ResetPassword from './components/auth/ResetPassword';
 import Dashboard from './components/user/Dashboard';
 import Profile from './components/user/Profile';
 import MainFeature from './components/user/MainFeature';
+import Help from './components/user/Help'; // Add this import
 
 import NotFound from './components/errors/NotFound';
 
@@ -38,6 +39,8 @@ const AppRoutes = () => {
       <Route path="/dashboard" element={<Dashboard />} />
       <Route path="/profile" element={<Profile />} />
       <Route path="/feature" element={<MainFeature />} />
+      <Route path="/help" element={<Help />} />
+      
 
       {/* Fallback */}
       <Route path="*" element={<NotFound />} />

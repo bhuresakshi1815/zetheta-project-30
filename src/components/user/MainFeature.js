@@ -64,8 +64,7 @@ const VoiceRiskProfiler = () => {
   navigate('/dashboard');
   };
   const handleNavigateToHelp = () => {
-    // If you don't have a help page, you could navigate to about or create a help route
-    navigate('/about');
+    navigate('/help');
   };
 
   const handleLogout = () => {
@@ -78,7 +77,7 @@ const VoiceRiskProfiler = () => {
     return (
       <div style={{
         minHeight: '100vh',
-        background: 'linear-gradient(135deg, #f07d24 0%, #f69f1c 50%, #ffd700 100%)',
+        background: '#205c79',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
@@ -93,23 +92,6 @@ const VoiceRiskProfiler = () => {
             alignItems: 'center',
             marginBottom: '50px'
           }}>
-            {/* <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-              <div style={{
-                width: '32px',
-                height: '32px',
-                backgroundColor: '#205c79',
-                borderRadius: '50%',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                color: 'white',
-                fontWeight: 'bold',
-                fontSize: '14px'
-              }}>
-                Z
-              </div>
-              <span style={{ color: '#205c79', fontWeight: 'bold', fontSize: '24px' }}>ZETHETA</span>
-            </div> */}
             <div 
   onClick={handleNavigateToDashboard}
   style={{ 
@@ -141,7 +123,7 @@ const VoiceRiskProfiler = () => {
                 style={{
                   padding: '8px 16px',
                   backgroundColor: 'rgba(255,255,255,0.2)',
-                  color: '#205c79',
+                  color: 'white',
                   border: 'none',
                   borderRadius: '20px',
                   fontSize: '14px',
@@ -154,7 +136,7 @@ const VoiceRiskProfiler = () => {
                 onClick={handleNavigateToContact}
                 style={{
                   padding: '8px 16px',
-                  backgroundColor: '#205c79',
+                  backgroundColor: '#f07d24',
                   color: 'white',
                   border: 'none',
                   borderRadius: '20px',
@@ -168,7 +150,7 @@ const VoiceRiskProfiler = () => {
                 onClick={handleNavigateToHelp}
                 style={{
                   padding: '8px 16px',
-                  backgroundColor: '#205c79',
+                  backgroundColor: '#f07d24',
                   color: 'white',
                   border: 'none',
                   borderRadius: '20px',
@@ -182,7 +164,7 @@ const VoiceRiskProfiler = () => {
                 onClick={handleLogout}
                 style={{
                   padding: '8px 16px',
-                  backgroundColor: '#205c79',
+                  backgroundColor: '#f07d24',
                   color: 'white',
                   border: 'none',
                   borderRadius: '20px',
@@ -222,7 +204,7 @@ const VoiceRiskProfiler = () => {
                 boxShadow: '0 8px 20px rgba(0,0,0,0.1)'
               }}>
                 <div style={{
-                  color: '#205c79',
+                  color: 'white',
                   fontSize: '24px',
                   fontWeight: '600'
                 }}>
@@ -231,14 +213,14 @@ const VoiceRiskProfiler = () => {
               </div>
               
               <div style={{
-                backgroundColor: '#f07d24',
+                backgroundColor: '#f69f1c',
                 border: '4px solid white',
                 borderRadius: '15px',
                 padding: '30px',
                 boxShadow: '0 8px 20px rgba(0,0,0,0.1)'
               }}>
                 <div style={{
-                  color: '#205c79',
+                  color: 'white',
                   fontSize: '24px',
                   fontWeight: '600'
                 }}>
@@ -254,7 +236,7 @@ const VoiceRiskProfiler = () => {
                 boxShadow: '0 8px 20px rgba(0,0,0,0.1)'
               }}>
                 <div style={{
-                  color: '#205c79',
+                  color: 'white',
                   fontSize: '24px',
                   fontWeight: '600'
                 }}>
@@ -267,7 +249,7 @@ const VoiceRiskProfiler = () => {
               <button
                 onClick={() => setCurrentStep(1)}
                 style={{
-                  backgroundColor: '#205c79',
+                  backgroundColor: '#f07d24',
                   color: 'white',
                   padding: '12px 24px',
                   border: 'none',
@@ -290,7 +272,7 @@ const VoiceRiskProfiler = () => {
   return (
     <div style={{
       minHeight: '100vh',
-      background: 'linear-gradient(135deg, #205c79 0%, #205c79 40%, #f07d24 100%)',
+      background: '#205c79',
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'center',
@@ -305,23 +287,6 @@ const VoiceRiskProfiler = () => {
           alignItems: 'center',
           marginBottom: '50px'
         }}>
-          {/* <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-            <div style={{
-              width: '32px',
-              height: '32px',
-              backgroundColor: '#f07d24',
-              borderRadius: '50%',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              color: 'white',
-              fontWeight: 'bold',
-              fontSize: '14px'
-            }}>
-              Z
-            </div>
-            <span style={{ color: 'white', fontWeight: 'bold', fontSize: '24px' }}>ZETHETA</span>
-          </div> */}
           <div 
   onClick={handleNavigateToDashboard}
   style={{ 
@@ -366,7 +331,7 @@ const VoiceRiskProfiler = () => {
               onClick={handleNavigateToContact}
               style={{
                 padding: '8px 16px',
-                backgroundColor: '#1a4d66',
+                backgroundColor: '#f07d24',
                 color: 'white',
                 border: 'none',
                 borderRadius: '20px',
@@ -380,7 +345,7 @@ const VoiceRiskProfiler = () => {
               onClick={handleNavigateToHelp}
               style={{
                 padding: '8px 16px',
-                backgroundColor: '#1a4d66',
+                backgroundColor: '#f07d24',
                 color: 'white',
                 border: 'none',
                 borderRadius: '20px',
@@ -394,7 +359,7 @@ const VoiceRiskProfiler = () => {
               onClick={handleLogout}
               style={{
                 padding: '8px 16px',
-                backgroundColor: '#1a4d66',
+                backgroundColor: '#f07d24',
                 color: 'white',
                 border: 'none',
                 borderRadius: '20px',
@@ -438,7 +403,7 @@ const VoiceRiskProfiler = () => {
             }}>
               <label htmlFor="file-upload" style={{ cursor: 'pointer', display: 'block' }}>
                 <div style={{
-                  border: '3px dashed #205c79',
+                  border: '3px dashed white',
                   borderRadius: '15px',
                   padding: '40px',
                   backgroundColor: 'rgba(255,255,255,0.1)',
@@ -446,11 +411,11 @@ const VoiceRiskProfiler = () => {
                 }}>
                   <Upload style={{
                     margin: '0 auto 15px auto',
-                    color: '#205c79',
+                    color: 'white',
                     display: 'block'
                   }} size={32} />
                   <span style={{
-                    color: '#205c79',
+                    color: 'white',
                     fontSize: '20px',
                     fontWeight: '600'
                   }}>
@@ -468,7 +433,7 @@ const VoiceRiskProfiler = () => {
               {uploadedFile && (
                 <div style={{
                   marginTop: '20px',
-                  color: '#205c79',
+                  color: 'white',
                   fontWeight: '600',
                   fontSize: '16px'
                 }}>
@@ -489,13 +454,13 @@ const VoiceRiskProfiler = () => {
               Or record your audio here
             </p>
             <div style={{
-              backgroundColor: '#f07d24',
+              backgroundColor: '#f69f1c',
               borderRadius: '20px',
               padding: '40px',
               boxShadow: '0 8px 25px rgba(0,0,0,0.15)'
             }}>
               <div style={{
-                border: '3px solid #205c79',
+                border: '3px solid white',
                 borderRadius: '15px',
                 padding: '40px',
                 marginBottom: '30px',
@@ -508,9 +473,9 @@ const VoiceRiskProfiler = () => {
                   gap: '15px',
                   marginBottom: '20px'
                 }}>
-                  <Mic style={{ color: '#205c79' }} size={28} />
+                  <Mic style={{ color: 'white' }} size={28} />
                   <span style={{
-                    color: '#205c79',
+                    color: 'white',
                     fontSize: '20px',
                     fontWeight: '600'
                   }}>
@@ -591,7 +556,7 @@ const VoiceRiskProfiler = () => {
             <button
               onClick={proceedToResults}
               style={{
-                backgroundColor: '#205c79',
+                backgroundColor: '#f07d24',
                 color: 'white',
                 padding: '15px 40px',
                 border: 'none',
@@ -603,11 +568,11 @@ const VoiceRiskProfiler = () => {
                 transition: 'all 0.3s ease'
               }}
               onMouseOver={(e) => {
-                e.target.style.backgroundColor = '#1a4d66';
+                e.target.style.backgroundColor = '#f69f1c';
                 e.target.style.transform = 'translateY(-2px)';
               }}
               onMouseOut={(e) => {
-                e.target.style.backgroundColor = '#205c79';
+                e.target.style.backgroundColor = '#f07d24';
                 e.target.style.transform = 'translateY(0)';
               }}
             >

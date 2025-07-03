@@ -1,8 +1,14 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-const Dashboard = () => {
+const Help = () => {
   const [activeButton, setActiveButton] = useState(null);
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    subject: '',
+    message: ''
+  });
   const navigate = useNavigate();
 
   // Navigation handlers
@@ -15,7 +21,7 @@ const Dashboard = () => {
   };
 
   const handleNavigateToHelp = () => {
-    navigate('/help'); // Updated to navigate to help route
+    navigate('/help');
   };
 
   const handleLogout = () => {
@@ -24,7 +30,11 @@ const Dashboard = () => {
   };
 
   const handleNavigateToRiskProfiler = () => {
-    navigate('/feature'); // This will go to your MainFeature component
+    navigate('/feature');
+  };
+
+  const handleNavigateToDashboard = () => {
+    navigate('/dashboard');
   };
 
   const handleButtonClick = (buttonName) => {
@@ -54,6 +64,28 @@ const Dashboard = () => {
     }
   };
 
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({
+      ...prev,
+      [name]: value
+    }));
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log('Form submitted:', formData);
+    // Add your form submission logic here
+    alert('Your enquiry has been submitted successfully!');
+    // Reset form
+    setFormData({
+      name: '',
+      email: '',
+      subject: '',
+      message: ''
+    });
+  };
+
   const containerStyle = {
     minHeight: '100vh',
     position: 'relative',
@@ -64,7 +96,7 @@ const Dashboard = () => {
   const backgroundStyle = {
     position: 'absolute',
     inset: '0',
-    background: '#205c79' // Changed to solid blue background
+    background: '#205c79'
   };
 
   const circle1Style = {
@@ -119,7 +151,8 @@ const Dashboard = () => {
   const logoSectionStyle = {
     display: 'flex',
     alignItems: 'center',
-    gap: '0.5rem'
+    gap: '0.5rem',
+    cursor: 'pointer'
   };
 
   const logoTextStyle = {
@@ -137,7 +170,7 @@ const Dashboard = () => {
     padding: '0.5rem 1rem',
     borderRadius: '0.5rem',
     fontWeight: '500',
-    backgroundColor: '#f07d24', // Changed to orange
+    backgroundColor: '#f07d24',
     color: 'white',
     border: 'none',
     cursor: 'pointer',
@@ -158,67 +191,81 @@ const Dashboard = () => {
 
   const contentWrapperStyle = {
     maxWidth: '48rem',
-    margin: '0 auto'
+    margin: '0 auto',
+    width: '100%'
   };
 
-  const welcomeTitleStyle = {
+  const titleStyle = {
     fontSize: '3rem',
     fontWeight: 'bold',
     color: 'white',
     marginBottom: '1rem'
   };
 
-  const mainQuestionStyle = {
-    fontSize: '1.875rem',
+  const subtitleStyle = {
+    fontSize: '1.5rem',
     fontWeight: '600',
     color: 'white',
     marginBottom: '2rem'
   };
 
-  const getRiskProfilerButtonStyle = (isActive) => ({
+  const formCardStyle = {
+    padding: '2rem',
+    borderRadius: '1rem',
+    backgroundColor: 'rgba(240, 125, 36, 0.8)',
+    backdropFilter: 'blur(10px)',
+    border: '1px solid rgba(255, 255, 255, 0.2)',
+    boxShadow: '0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)',
+    textAlign: 'left'
+  };
+
+  const formGroupStyle = {
+    marginBottom: '1.5rem'
+  };
+
+  const labelStyle = {
+    display: 'block',
+    fontSize: '1rem',
+    fontWeight: '600',
+    color: 'white',
+    marginBottom: '0.5rem'
+  };
+
+  const inputStyle = {
+    width: '100%',
+    padding: '0.75rem 1rem',
+    borderRadius: '0.5rem',
+    border: '2px solid rgba(255, 255, 255, 0.2)',
+    backgroundColor: 'rgba(255, 255, 255, 0.1)',
+    color: 'white',
+    fontSize: '1rem',
+    boxSizing: 'border-box',
+    transition: 'all 0.3s ease'
+  };
+
+  const textareaStyle = {
+    ...inputStyle,
+    minHeight: '120px',
+    resize: 'vertical'
+  };
+
+  const submitButtonStyle = {
     padding: '1rem 2rem',
     borderRadius: '9999px',
     fontSize: '1.25rem',
     fontWeight: 'bold',
-    backgroundColor: '#f69f1c', // Changed to yellow
+    backgroundColor: '#f69f1c',
     color: '#205c79',
     border: '3px solid rgba(255, 255, 255, 0.2)',
     cursor: 'pointer',
     transition: 'all 0.3s ease',
     boxShadow: '0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)',
-    marginBottom: '3rem',
-    transform: isActive ? 'scale(0.95)' : 'scale(1)'
-  });
-
-  const howItWorksStyle = {
-    marginTop: '3rem'
-  };
-
-  const howItWorksTitleStyle = {
-    fontSize: '1.5rem',
-    fontWeight: '600',
-    color: 'white',
-    marginBottom: '1.5rem'
-  };
-
-  const explanationCardStyle = {
-    padding: '2rem',
-    borderRadius: '1rem',
-    backgroundColor: 'rgba(240, 125, 36, 0.8)', // Changed to orange background
-    backdropFilter: 'blur(10px)',
-    border: '1px solid rgba(255, 255, 255, 0.2)',
-    boxShadow: '0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)'
-  };
-
-  const explanationTextStyle = {
-    fontSize: '1.125rem',
-    color: 'white',
-    lineHeight: '1.75'
+    width: '100%'
   };
 
   return (
     <div style={containerStyle}>
-      {/* Background with gradient */}
+      {/* Background */}
       <div style={backgroundStyle}></div>
       
       {/* Decorative gradient circles */}
@@ -230,15 +277,11 @@ const Dashboard = () => {
       <div style={mainContentStyle}>
         {/* Header */}
         <header style={headerStyle}>
-          <div style={logoSectionStyle}>
-            {/* ===== INSERT YOUR LOGO HERE ===== */}
-            {/* Replace the div below with your logo image */}
-            {/* Example: <img src="/path/to/your/logo.png" alt="Zetheta Logo" style={{height: '3rem', width: 'auto'}} /> */}
+          <div style={logoSectionStyle} onClick={handleNavigateToDashboard}>
             <div style={logoTextStyle}>
               <span style={{ color: '#f69f1c' }}>Z</span>
               <span style={{ marginLeft: '0.25rem' }}>ZETHETA</span>
             </div>
-            {/* ===== END LOGO SECTION ===== */}
           </div>
           
           <nav style={navButtonsStyle}>
@@ -259,32 +302,79 @@ const Dashboard = () => {
         {/* Main content area */}
         <main style={mainSectionStyle}>
           <div style={contentWrapperStyle}>
-            {/* Welcome message */}
-            <h1 style={welcomeTitleStyle}>Welcome User!</h1>
+            {/* Page title */}
+            <h1 style={titleStyle}>Help & Support</h1>
             
-            {/* Main question */}
-            <h2 style={mainQuestionStyle}>Ready to try out the risk profiler?</h2>
+            {/* Subtitle */}
+            <h2 style={subtitleStyle}>Have a question? We're here to help!</h2>
             
-            {/* Risk profiler button */}
-            <button
-              onClick={() => handleButtonClick('Risk profiler')}
-              style={getRiskProfilerButtonStyle(activeButton === 'Risk profiler')}
-              onMouseEnter={(e) => e.target.style.transform = 'scale(1.1)'}
-              onMouseLeave={(e) => e.target.style.transform = activeButton === 'Risk profiler' ? 'scale(0.95)' : 'scale(1)'}
-            >
-              Risk profiler
-            </button>
-            
-            {/* How does it work section */}
-            <div style={howItWorksStyle}>
-              <h3 style={howItWorksTitleStyle}>How does it work?</h3>
-              
-              <div style={explanationCardStyle}>
-                <p style={explanationTextStyle}>
-                  Speak your mind or upload a voice clip—our system will analyze it and give you a clear 
-                  risk profile along with smart, actionable suggestions.
-                </p>
-              </div>
+            {/* Enquiry form */}
+            <div style={formCardStyle}>
+              <form onSubmit={handleSubmit}>
+                <div style={formGroupStyle}>
+                  <label htmlFor="name" style={labelStyle}>Name</label>
+                  <input
+                    type="text"
+                    id="name"
+                    name="name"
+                    value={formData.name}
+                    onChange={handleInputChange}
+                    required
+                    style={inputStyle}
+                    placeholder="Enter your full name"
+                  />
+                </div>
+
+                <div style={formGroupStyle}>
+                  <label htmlFor="email" style={labelStyle}>Email</label>
+                  <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    value={formData.email}
+                    onChange={handleInputChange}
+                    required
+                    style={inputStyle}
+                    placeholder="Enter your email address"
+                  />
+                </div>
+
+                <div style={formGroupStyle}>
+                  <label htmlFor="subject" style={labelStyle}>Subject</label>
+                  <input
+                    type="text"
+                    id="subject"
+                    name="subject"
+                    value={formData.subject}
+                    onChange={handleInputChange}
+                    required
+                    style={inputStyle}
+                    placeholder="What's your enquiry about?"
+                  />
+                </div>
+
+                <div style={formGroupStyle}>
+                  <label htmlFor="message" style={labelStyle}>Message</label>
+                  <textarea
+                    id="message"
+                    name="message"
+                    value={formData.message}
+                    onChange={handleInputChange}
+                    required
+                    style={textareaStyle}
+                    placeholder="Please describe your question or issue in detail..."
+                  />
+                </div>
+
+                <button
+                  type="submit"
+                  style={submitButtonStyle}
+                  onMouseEnter={(e) => e.target.style.transform = 'scale(1.05)'}
+                  onMouseLeave={(e) => e.target.style.transform = 'scale(1)'}
+                >
+                  Submit Enquiry
+                </button>
+              </form>
             </div>
           </div>
         </main>
@@ -293,4 +383,4 @@ const Dashboard = () => {
   );
 };
 
-export default Dashboard;
+export default Help;
